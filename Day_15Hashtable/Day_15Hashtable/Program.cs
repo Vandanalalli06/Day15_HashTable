@@ -28,7 +28,6 @@ class Program
         }
         int frequency = LinkedHashMap.Get("to");
         Console.WriteLine(frequency);
-
         ///UC_2:Find the frequency of word in paragraph
         string Paragraph = "“Paranoids are not paranoid because they are " +
             "paranoid but because they keep putting themselves deliberately into" +
@@ -47,6 +46,17 @@ class Program
         }
         int frequency1 = LinkedHashMap.Get("paranoid");
         Console.WriteLine(frequency1);
+
+        //UC_3:Remove particular word from the paragraph
+
+        LinkedHashMap.Remove("avoidable");
+        int frequency2 = LinkedHashMap.Get("avoidable");
+
+        Console.WriteLine(frequency2);
     }
 }
 
+
+       
+
+           

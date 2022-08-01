@@ -39,7 +39,7 @@ public class LinkedHashMap<K, V> where K : IComparable               //Created c
         //Return the absolute value because hashCode contain negative value sometime
         int hashCode = Math.Abs(key.GetHashCode());          // Return the "Abs" absolute value because hashCode contain negative value sometime
         //To get the hashcode within range
-        int index = hashCode % NumBuckets;              
+        int index = hashCode % NumBuckets;
         return index;                                        // In This case index is 3
     }
 
@@ -53,15 +53,31 @@ public class LinkedHashMap<K, V> where K : IComparable               //Created c
         {
             myLinkedList = new LinkedList<K, V>();                  // now it is going to intialize at a index in linked list class 
             BucketList[index] = myLinkedList;                       // Intailised linked list by Storing Bucketlist of 3 as Head and tail
-                                                                   
+
         }
         //Check myMapNode is present or not if not then create new else add value in previous mymapnode
         MyMapNode<K, V> myMapNode = myLinkedList.Search(key);       //Searching for the key "Key = To" in Linked list class
         if (myMapNode == null)                                      // I dont have any node inside the link list since Head and tail is null
         {
-            myMapNode = new MyMapNode<K, V>(key, value);           
-            myLinkedList.Append(myMapNode);                         
-        }                                                           
+            myMapNode = new MyMapNode<K, V>(key, value);
+            myLinkedList.Append(myMapNode);
+        }
         else myMapNode.value = value;
+    }
+    public void Remove(K key)
+    {
+        //Find the index for the word
+        int index = GetBucketIndex(key);
+        LinkedList<K, V> myLinkedList = BucketList[index];
+        //Check its linked list at the posititon
+        if (myLinkedList != null)
+        {
+            //Check mymapNode in corrosponding linked list
+            MyMapNode<K, V> myMapNode = myLinkedList.Search(key);
+            if (myMapNode != null)
+            {
+                myLinkedList.DeleteNode(myMapNode);
+            }
+        }
     }
 }
